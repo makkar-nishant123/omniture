@@ -41,19 +41,23 @@ public class track_omni {
 				CaptureType.RESPONSE_CONTENT);
 
 		// create a new HAR with the label "yahoo.com"
-		proxy.newHar("yahoo.com");
+		proxy.newHar("marketing.adobe.com");
 
 		// open yahoo.com
-		driver.get("http://yahoo.com");
+		driver.get("http://marketing.adobe.com");
 
 		// get the HAR data
 		Har har = proxy.getHar();
 		try {
-			har.writeTo(new File(System.getProperty("user.dir") + File.separator + "test.output"));
+			har.writeTo(new File(System.getProperty("user.dir") + File.separator + "test.har"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		proxy.stop();
+		driver.close();
 	}
 
 }
